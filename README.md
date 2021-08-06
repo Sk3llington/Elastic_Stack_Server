@@ -104,7 +104,7 @@ The playbook implements the following tasks:
 Next we defined the managed nodes to target, in this case we set the keyword 'hosts:' to "elk", making sure that the playbook is run only on the machines in the "elk" group. 
 To edit groups and add/remove machines from a group, the following inventory file located in /etc/ansible is used (see image below).
 
-Images/hosts_file_web_servers_edit.png 
+![hosts file editing](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/hosts_file_web_servers_edit.png) 
 
 Next we defined the user account for the SSH connection, i.e., Web_1, by setting the keyword 'remote_user:' to "Web_1".
 
@@ -187,7 +187,7 @@ In this play, the ansible systemd module is used to start docker on boot, settin
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-Images/elk_docker_ps_output.png
+![Docker ps output](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/elk_docker_ps_output.png)
 
 ### Target Machines & Beats
 
@@ -295,7 +295,7 @@ First we connect to our Jump Box using the following command to SSH into the box
 $ ssh azadmin@51.141.166.114
 
 
-Images/SSH_into_Jump_Box.png
+![SSH into ump box](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/SSH_into_Jump_Box.png)
 
 Then we run the following command to start and launch our Ansible docker container (i.e., our Ansible Control Node):
 
@@ -304,7 +304,7 @@ $ sudo docker start hopeful_lalande && sudo docker attach hopeful_lalande
 
 Note: Your container will have a different name.
 
-Images/start_launch_ansible_container.png
+![Start and launch ansible container](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/start_launch_ansible_container.png)
 
 We then copy the playbooks into the correct location. The easiest way to do that is to use Git:
 
@@ -332,7 +332,7 @@ $ nano hosts
 
 Then we will update the file with the IP of web servers we want to install Filebeat & Metricbeat & ELK on. To create a group we need to use brackets "[]", give the group of server a name (i.e., "webservers" & "elk") followed by the private IP addresses of the servers.
 
-Images/hosts_file_web_servers_edit.png
+![hosts file web server edit](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/hosts_file_web_servers_edit.png)
 
 Next, we run the playbooks.
 
@@ -357,7 +357,7 @@ $ curl http://localhost:5601/app/kibana
 
 If the server was successfully installed and deployed we should see the following output in the terminal:
 
-Images/confirm_ELK_server_running_localhost.png
+![confirm elk server running via localhost](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/confirm_ELK_server_running_localhost.png)
 
 We can also use our web browser to confirm that the ELK server is up and running by opening a web browser page and entering the public ip address to access Kibana's web interface:
 
@@ -365,4 +365,4 @@ http://40.79.255.121:5601/app/kibana
 
 If the server is up and functioning, we should access the page below:
 
-Images/confirm_ELK_server_running_public_ip.png
+![confirm elk running via public ip](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/confirm_ELK_server_running_public_ip.png)
