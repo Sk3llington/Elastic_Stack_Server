@@ -19,7 +19,7 @@ The files in this repository were used to configure the network depicted below.
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the YAML files may be used to install only certain pieces of it, such as Filebeat and Metricbeat.
 
 
-(Diagrams/Azure_RedTeam1_vNet_diagram.png)
+(Images/Azure_RedTeam1_vNet_diagram.png)
 
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
@@ -104,7 +104,7 @@ The playbook implements the following tasks:
 Next we defined the managed nodes to target, in this case we set the keyword 'hosts:' to "elk", making sure that the playbook is run only on the machines in the "elk" group. 
 To edit groups and add/remove machines from a group, the following inventory file located in /etc/ansible is used (see image below).
 
-(Screenshots/hosts_file_web_servers_edit.png) 
+(Images/hosts_file_web_servers_edit.png) 
 
 Next we defined the user account for the SSH connection, i.e., Web_1, by setting the keyword 'remote_user:' to "Web_1".
 
@@ -187,7 +187,7 @@ In this play, the ansible systemd module is used to start docker on boot, settin
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-(Screenshots/elk_docker_ps_output.png)
+(Images/elk_docker_ps_output.png)
 
 ### Target Machines & Beats
 
@@ -295,7 +295,7 @@ First we connect to our Jump Box using the following command to SSH into the box
 $ ssh azadmin@51.141.166.114
 
 
-(Screenshots/SSH_into_Jump_Box.png)
+(Images/SSH_into_Jump_Box.png)
 
 Then we run the following command to start and launch our Ansible docker container (i.e., our Ansible Control Node):
 
@@ -304,7 +304,7 @@ $ sudo docker start hopeful_lalande && sudo docker attach hopeful_lalande
 
 Note: Your container will have a different name.
 
-(Screenshots/start_launch_ansible_container.png)
+(Images/start_launch_ansible_container.png)
 
 We then copy the playbooks into the correct location. The easiest way to do that is to use Git:
 
@@ -332,7 +332,7 @@ $ nano hosts
 
 Then we will update the file with the IP of web servers we want to install Filebeat & Metricbeat & ELK on. To create a group we need to use brackets "[]", give the group of server a name (i.e., "webservers" & "elk") followed by the private IP addresses of the servers.
 
-(Screenshots/hosts_file_web_servers_edit.png)
+(Images/hosts_file_web_servers_edit.png)
 
 Next, we run the playbooks.
 
@@ -357,7 +357,7 @@ $ curl http://localhost:5601/app/kibana
 
 If the server was successfully installed and deployed we should see the following output in the terminal:
 
-(Screenshots/confirm_ELK_server_running_localhost.png)
+(Images/confirm_ELK_server_running_localhost.png)
 
 We can also use our web browser to confirm that the ELK server is up and running by opening a web browser page and entering the public ip address to access Kibana's web interface:
 
@@ -365,4 +365,4 @@ http://40.79.255.121:5601/app/kibana
 
 If the server is up and functioning, we should access the page below:
 
-(Screenshots/confirm_ELK_server_running_public_ip.png)
+(Images/confirm_ELK_server_running_public_ip.png)
