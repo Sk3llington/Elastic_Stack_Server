@@ -308,7 +308,7 @@ Note: Your container will have a different name.
 
 We then copy the playbooks into the correct location. The easiest way to do that is to use Git:
 
-
+```
 $ cd /etc/ansible
 $ mkdir files
 
@@ -320,7 +320,7 @@ $ git clone https://github.com/yourusername/project-1.git
 
 $ cp project-1/playbooks/* .
 $ cp project-1/files/* ./files
-
+```
 
 Now that all the files we need are copied into the correct location, we can update the list of web servers to run the playbooks on:
 
