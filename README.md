@@ -1,4 +1,4 @@
-# Project1-UCLA-Cyber-Security
+# Project-1-UCLA-Cyber-Security
 
 Deployment of a vulnerable web application via Microsoft Azure Cloud.
 
@@ -54,7 +54,7 @@ In addition to the above, Azure has provisioned a load balancer in front of all 
 
 - Availability Zone 1: Web-1 + Web-2 + Web-3
 
-- Availability Zone 2: ELK
+- Availability Zone 2: ELK-Server
 
 ## ELK Server Configuration
 
@@ -91,7 +91,7 @@ Ansible was used to automate configuration of the ELK server. No configuration w
 The playbook implements the following tasks:
 
 ```
-- ---
+---
 - name: Configure Elk VM with Docker
   hosts: elk
   remote_user: Web_1
@@ -113,7 +113,7 @@ Next we activated privilege escalation by setting the keyword 'become:' to "true
 Following the keyword 'tasks:', the second play is defined below.
 
 ```
-    # Use apt module
+     # Use apt module
     - name: Install docker.io
       apt:
         update_cache: yes
@@ -291,16 +291,18 @@ First, we SSH into the control node and follow the steps below:
 
 First we connect to our Jump Box using the following command to SSH into the box:
 
-
+```
 $ ssh azadmin@51.141.166.114
+```
 
 
 ![SSH into ump box](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/SSH_into_Jump_Box.png)
 
 Then we run the following command to start and launch our Ansible docker container (i.e., our Ansible Control Node):
 
-
+```
 $ sudo docker start hopeful_lalande && sudo docker attach hopeful_lalande 
+```
 
 Note: Your container will have a different name.
 
@@ -326,8 +328,9 @@ Now that all the files we need are copied into the correct location, we can upda
 
 We need to edit the "hosts" file located in /etc/ansible using the following commands:
 
-
+```
 $ nano hosts
+```
 
 
 Then we will update the file with the IP of web servers we want to install Filebeat & Metricbeat & ELK on. To create a group we need to use brackets "[]", give the group of server a name (i.e., "webservers" & "elk") followed by the private IP addresses of the servers.
@@ -338,21 +341,25 @@ Next, we run the playbooks.
 
 First we run our ELK playbook to deploy our ELK server:
 
-
+```
 $ ansible-playbook install_elk.yml
+```
 
 Then we run the Filebeat and Metricbeat playbooks to to install the agents on our web servers (Web-1, Web-2, Web-3):
 
-
+```
 $ ansible-playbook install_filebeat.yml
+```
+```
 $ ansible-playbook install_metricbeat.yml
+```
 
 
 To verify that our ELK server was successfully deployed, we SSH into our ELK server and run the following command:
 
-
+```
 $ curl http://localhost:5601/app/kibana
-
+```
 
 
 If the server was successfully installed and deployed we should see the following output in the terminal:
