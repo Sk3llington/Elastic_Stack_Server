@@ -312,20 +312,22 @@ Note: Your container will have a different name.
 
 ![Start and launch ansible container](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/start_launch_ansible_container.png)
 
-We then copy the playbooks into the correct location. The easiest way to do that is to use Git:
+We then copy the playbooks into the correct location. The easiest way to do that is to use Git and run the following commands in your terminal:
 
 ```
-$ cd /etc/ansible
-$ mkdir files
+cd /etc/ansible
+
+mkdir files
 
 # Clone Repository + IaC Files
 
-$ git clone https://github.com/yourusername/project-1.git
+git clone https://github.com/yourusername/projectname.git
 
 # Move Playbooks and hosts file Into `/etc/ansible`
 
-$ cp project-1/playbooks/* .
-$ cp project-1/files/* ./files
+cp project-1/playbooks/* .
+
+cp project-1/files/* ./files
 ```
 
 Now that all the files we need are copied into the correct location, we can update the list of web servers to run the playbooks on:
