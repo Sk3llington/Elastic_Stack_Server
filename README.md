@@ -65,7 +65,7 @@ Rather than configure ELK manually, we opted to develop a reusable Ansible Playb
 To use this playbook, one must log into the Jump Box, then issue the command: 
 
 ```
-ansible-playbook install_elk.yml.
+ansible-playbook install_elk.yml
 ```
 
 This runs the install_elk.yml playbook on the elk host.
@@ -296,7 +296,7 @@ First, we SSH into the control node and follow the steps below:
 First we connect to our Jump Box using the following command to SSH into the box:
 
 ```
-$ ssh azadmin@51.141.166.114
+ssh azadmin@51.141.166.114
 ```
 
 
@@ -305,7 +305,7 @@ $ ssh azadmin@51.141.166.114
 Then we run the following command to start and launch our Ansible docker container (i.e., our Ansible Control Node):
 
 ```
-$ sudo docker start hopeful_lalande && sudo docker attach hopeful_lalande 
+sudo docker start hopeful_lalande && sudo docker attach hopeful_lalande 
 ```
 
 Note: Your container will have a different name.
@@ -333,7 +333,7 @@ Now that all the files we need are copied into the correct location, we can upda
 We need to edit the "hosts" file located in /etc/ansible using the following commands:
 
 ```
-$ nano hosts
+nano hosts
 ```
 
 
@@ -346,23 +346,23 @@ Next, we run the playbooks.
 First we run our ELK playbook to deploy our ELK server:
 
 ```
-$ ansible-playbook install_elk.yml
+ansible-playbook install_elk.yml
 ```
 
 Then we run the Filebeat and Metricbeat playbooks to to install the agents on our web servers (Web-1, Web-2, Web-3):
 
 ```
-$ ansible-playbook install_filebeat.yml
+ansible-playbook install_filebeat.yml
 ```
 ```
-$ ansible-playbook install_metricbeat.yml
+ansible-playbook install_metricbeat.yml
 ```
 
 
 To verify that our ELK server was successfully deployed, we SSH into our ELK server and run the following command:
 
 ```
-$ curl http://localhost:5601/app/kibana
+curl http://localhost:5601/app/kibana
 ```
 
 
