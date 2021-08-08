@@ -1,6 +1,6 @@
 # Project-1-UCLA-Cyber-Security
 
-Deployment of a vulnerable web application via Microsoft Azure Cloud.
+Deployment of a DVWA web application and a monitoring ELK server via Microsoft Azure Cloud.
 
 ## Automated ELK Stack Deployment
 
