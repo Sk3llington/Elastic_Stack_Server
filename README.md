@@ -368,7 +368,7 @@ curl http://localhost:5601/app/kibana
 ```
 
 
-If the server was successfully installed and deployed we should see the following output in the terminal:
+If the server was successfully installed and deployed we should see the following HTLM code output in the terminal:
 
 ![confirm elk server running via localhost](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/confirm_ELK_server_running_localhost.png)
 
