@@ -208,7 +208,7 @@ We have installed the following Beats on these machines:
 
 These Beats allow us to collect the following information from each machine:
 
-`Filebeat`: Filebeat detects changes to the filesystem. Specifically, we use it to collect system logs. More specifically we use it to detect SSH login attempts and failed sudo escalations.
+`Filebeat`: Filebeat detects changes to the filesystem. We use it to collect system logs and more specifically, we use it to detect SSH login attempts and failed sudo escalations.
 
 Filebeat playbook we used below:
 
