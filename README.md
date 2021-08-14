@@ -394,7 +394,7 @@ We can directly access `system.auth.ssh.event` on the left side of our page to s
 ![filebeat ssh event logs 2](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/84ccf0c5c0b2575a8be4ddd6a0295a6e626319ec/Images/filebeat_ssh_event_logs_2.png)
 
 
-At this point we have 1 successful ssh login and a failed one. Since I like to be 100% that it is indeed working, I intentionally failed to authenticate and access the webserver via ssh 3 more times:
+At this point we have 1 successful ssh login and a failed one. Since I like to be 100% sure that it is indeed working, I intentionally failed to authenticate and access the webserver via ssh 3 more times:
 
 ![logout and denied ssh auth](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/84ccf0c5c0b2575a8be4ddd6a0295a6e626319ec/Images/logout_and_denied_ssh_auth.png)
 
