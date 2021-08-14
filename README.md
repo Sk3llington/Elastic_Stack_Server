@@ -94,7 +94,7 @@ Ansible was used to automate configuration of the ELK server. No configuration w
 
 The playbook implements the following tasks:
 
-```
+```yaml
 ---
 - name: Configure Elk VM with Docker
   hosts: elk
@@ -116,7 +116,7 @@ Next we activated privilege escalation by setting the keyword 'become:' to "true
 
 Following the keyword 'tasks:', the second play is defined below.
 
-```
+```yaml
      # Use apt module
     - name: Install docker.io
       apt:
@@ -127,7 +127,7 @@ Following the keyword 'tasks:', the second play is defined below.
 
 In this play, the ansible package manager module is tasked with installing docker.io. The keyword 'update_cache:' is set to "yes" to download package information from all configured sources and their dependencies prior to installing docker, it is necessary to successfully install docker in this case. Next the keyword 'state:' is set to "present" to verify that the package is installed.
 
-```
+```yaml
       # Use apt module
     - name: Install pip3
       apt:
@@ -139,7 +139,7 @@ In this play, the ansible package manager module is tasked with installing docke
 In this play, the ansible package manager module is tasked with installing  'pip3', a version of the 'pip installer' which is a standard package manager used to install and maintain packages for Python.
 The keyword 'force_apt_get:' is set to "yes" to force usage of apt-get instead of aptitude. The keyword 'state:' is set to "present" to verify that the package is installed.
 
-```
+```yaml
       # Use pip module
     - name: Install Docker python module
       pip:
@@ -149,7 +149,7 @@ The keyword 'force_apt_get:' is set to "yes" to force usage of apt-get instead o
 
 In this play the pip installer is used to install docker and also verify afterwards that docker is installed ('state: present').
 
-```
+```yaml
       # Use sysctl module
     - name: Use more memory
       sysctl:
@@ -161,7 +161,7 @@ In this play the pip installer is used to install docker and also verify afterwa
 
 In this play, the ansible sysctl module configures the target virtual machine (i.e., the Elk server VM) to use more memory. On newer version of Elasticsearch, the max virtual memory areas is likely to be too low by default (ie., 65530) and will result in the following error: "elasticsearch | max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]", thus requiring the increase of vm.max_map_count to at least 262144 using the sysctl module (keyword 'value:' set to "262144"). The keyword 'state:' is set to "present" to verify that the change was applied. The sysctl command is used to modify Linux kernel variables at runtime, to apply the changes to the virtual memory variables, the new variables need to be reloaded so the keyword 'reload:' is set to "yes" (this is also necessary in case the VM has been restarted).
 
-```
+```yaml
       # Use docker_container module
     - name: download and launch a docker elk container
       docker_container:
@@ -178,7 +178,7 @@ In this play, the ansible sysctl module configures the target virtual machine (i
 In this play, the ansible docker_container module is used to download and launch our Elk container. The container is pulled from the docker hub repository. The keyword 'image:' is set with the value "sebp/elk:761", "sebp" is the creator of the container (i.e., Sebastien Pujadas). "elk" is the container and "761" is the version of the container. The keyword 'state:' is set to "started" to start the container upon creation. The keyword 'restart_policy:' is set to "always" and will ensure that the container restarts if you restart your web vm. Without it, you will have to restart your container when you restart the machine.
 The keyword 'published_ports:' is set with the 3 ports that are used by our ELK stack configuration, i.e., "5601" is the port used by Kibana, "9200" is the port used by Elasticsearch for requests by default and "5400" is the default port Logstash listens on for incoming Beats connections (we will go over the Beats we installed in the following section "Target Machines & Beats").
 
-```
+```yaml
       # Use systemd module
     - name: Enable service docker on boot
       systemd:
@@ -212,7 +212,7 @@ These Beats allow us to collect the following information from each machine:
 
 Filebeat playbook we used below:
 
-```
+```yaml
 ---
 - name: Install and Launch Filebeat
   hosts: webservers
@@ -250,7 +250,7 @@ Filebeat playbook we used below:
 
 Metricbeat playbook we used below:
 
-```
+```yaml
 ---
 - name: Install and Launch Metricbeat
   hosts: webservers
