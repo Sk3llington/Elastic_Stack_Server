@@ -387,14 +387,14 @@ Below, we can see that `filebeat` is up and running and collecting system logs:
 ![filebeat is running](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/84ccf0c5c0b2575a8be4ddd6a0295a6e626319ec/Images/filebeat_running.png)
 
 
-Next, we want to confirm that failed ssh and successful ones are correctly logged.
+Next, we want to confirm that failed ssh login and successful ones are correctly logged.
 
-We can directly access `system.auth.ssh.event` on the left side of our page to specifically fetch the number of successful and failed ssh login attempts, I have intentionally logged into the Web-1 server once and intentionally failed to connect to it via ssh using the wrong username to see if the failed attempt is correctly logged, we can see below that it is:
+We can directly access `system.auth.ssh.event` on the left side of our page to specifically fetch the number of successful and failed ssh login attempts. I have intentionally logged into the Web-1 server once and intentionally failed to connect to it via ssh using the wrong username to see if both attempts are correctly logged, we can see below that they are:
 
 ![filebeat ssh event logs 2](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/84ccf0c5c0b2575a8be4ddd6a0295a6e626319ec/Images/filebeat_ssh_event_logs_2.png)
 
 
-At this point we have 1 successful ssh login and a failed one. But I like to be 100% that it is indeed working, so I intentionally failed to authenticate and access the webserver via ssh 3 more times:
+At this point we have 1 successful ssh login and a failed one. Since I like to be 100% that it is indeed working, I intentionally failed to authenticate and access the webserver via ssh 3 more times:
 
 ![logout and denied ssh auth](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/84ccf0c5c0b2575a8be4ddd6a0295a6e626319ec/Images/logout_and_denied_ssh_auth.png)
 
@@ -406,5 +406,5 @@ Now, we want to make sure that `metricbeat` is running. All we have to do is to 
 
 ![metricbeat running](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/84ccf0c5c0b2575a8be4ddd6a0295a6e626319ec/Images/metricbeat_running.png)
 
-We have now confirmed that our ELK Stack server is successfully deployed and ready to collect the data we need to monitor our webservers' activity, watching for any sign of malicious activity!
+We have now confirmed that our ELK Stack server is successfully deployed and ready to collect the data we need to monitor our webservers, watching for any sign of malicious activity!
 
