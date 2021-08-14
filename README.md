@@ -379,3 +379,9 @@ http://40.79.255.121:5601/app/kibana
 If the server is up and functioning, we should access the page below:
 
 ![confirm elk running via public ip](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/confirm_ELK_server_running_public_ip.png)
+
+Next, we want to verify that `filebeat` and `metricbeat` are actually collecting the data they are supposed to.
+
+Below, we can see that `filebeat` is up and running and collecting system logs:
+
+![filebeat is running]
