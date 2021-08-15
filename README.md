@@ -550,6 +550,10 @@ After stopping the `wget` command, we can see that thousands of index.html files
 rm *
 ```
 
+Now if we use `ls` again:
+
+![directory cleanup](
+
 We can also avoid the creation of the index.html file by adding the flag `-O` to our command so that we can specify a destination file where all the `index.html` will be concatenated and written to.
 
 Since we don't want to save the `index.html` files, we will not write them to any output file but instead send them directly to a directory that doesn't save anything: `/dev/null`. 
