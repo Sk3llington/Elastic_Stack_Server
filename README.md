@@ -386,9 +386,11 @@ Next, we want to verify that `filebeat` and `metricbeat` are actually collecting
 
 To do so, we have implemented 3 tasks:
 
-...1. Generate a high amount of failed SSH login attempts and verify that Kibana is picking up this activity.
-...2. Generate a high amount of CPU usage on the pen-testing machines and verify that Kibana picks up this data.
-...3. Generate a high amount of web requests to your pen-testing servers and make sure that Kibana is picking them up.
+1. Generate a high amount of failed SSH login attempts and verify that Kibana is picking up this activity.
+
+2. Generate a high amount of CPU usage on the pen-testing machines and verify that Kibana picks up this data.
+
+3. Generate a high amount of web requests to your pen-testing servers and make sure that Kibana is picking them up.
 
 
 
