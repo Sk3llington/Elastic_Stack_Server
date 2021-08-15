@@ -491,7 +491,7 @@ Next, we compare 2 of our Web servers to see the difference in CPU usage, confir
 
 Another view of the CPU usage metrics Kibana collected:
 
-![cpu stress test results graph](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/7393789af6e4858bb3db389ed5271e2b712c6579/Images/cpu_stress_test_result_graph.png)
+![cpu stress test results graph](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/cpu_stress_test_result_graph.png)
 
 
 * Generate a high amount of web requests to our pen-testing servers and make sure that Kibana is picking them up.
@@ -502,7 +502,7 @@ This time we want to generate a high amount of web requests directed to one of o
 
 2. We need to add a new firewall rule to allow our Jump Box (10.0.0.4) to connect to our web servers over HTTP on port 80. To do so, we add a new Inbound Security Rule to our RedTeam1 Network Security Group:
 
-![jump to http to webservers](
+![jump to http to webservers](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/jumpbox_http_to_webservers.png)
 
 
 3. We run the following command to download the file `index.html` from our Web-1 VM:
@@ -513,13 +513,16 @@ wget 10.0.0.5
 
 Output of the command:
 
-![index html download](
+![index html download](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/index_html_download.png)
 
 
 4. We confirm that the file has been downloaded with the `ls` command:
 
-> azadmin@Jump-Box-Provisioner:~$ ls 
-> index.html
+
+```bash
+azadmin@Jump-Box-Provisioner:~$ ls 
+index.html
+```
 
 5. Next, we run the `wget` command in a loop to generate a very high number of web requests, we will use the `while` loop:
 
@@ -529,16 +532,16 @@ while true; do wget 10.0.0.5; done
 
 The result is that the `Load` and `Network Traffic` were hit as seen below:
 
-![load increase DoS](
+![load increase DoS](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/load_increase_DoS.png)
 
-![memory usage](
+![memory usage](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/memory_usage.png)
 
-![network traffic increase](
+![network traffic increase](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/network_traffic_increase.png)
 
 After stopping the `wget` command, we can see that thousands of index.html files were created (as seen below).
 
 
-![index html files](
+![index html files](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/index_html_files.png)
 
 
  We can use the following command to clean that up:
