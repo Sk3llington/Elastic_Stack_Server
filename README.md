@@ -393,7 +393,7 @@ To do so, we have implemented 3 tasks:
 3. Generate a high amount of web requests to your pen-testing servers and make sure that Kibana is picking them up.
 
 
-..* Generating a hight amount of failed SSH login attempts:
+* Generating a hight amount of failed SSH login attempts:
 
 To generate these attempts we intentionally tried to connect to our Web-1 web server from the Jump Box instead of connecting from our Ansible container in order to generate failed attempts.
 To do so we used the following short script to automate 1000 failed SSH login attempts:
