@@ -386,17 +386,22 @@ Next, we want to verify that `filebeat` and `metricbeat` are actually collecting
 
 To do so, we have implemented 3 tasks:
 
+
 1. Generate a high amount of failed SSH login attempts and verify that Kibana is picking up this activity.
 
+
 2. Generate a high amount of CPU usage on the pen-testing machines and verify that Kibana picks up this data.
+
 
 3. Generate a high amount of web requests to our pen-testing servers and make sure that Kibana is picking them up.
 
 
 * Generating a hight amount of failed SSH login attempts:
 
+
 To generate these attempts we intentionally tried to connect to our Web-1 web server from the Jump Box instead of connecting from our Ansible container in order to generate failed attempts.
 To do so we used the following short script to automate 1000 failed SSH login attempts:
+
 
 ```bash
 for i in {1..1000}; do ssh Web_1@10.0.0.5; done
@@ -407,13 +412,14 @@ for i in {1..1000}; do ssh Web_1@10.0.0.5; done
 
 Next we check Kibana to see if the failed attempts were logged:
 
+
 ![filebeat failed ssh attempts](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/f927b7cdbd50c0d4b7830f1839658fcfeaf2a96d/Images/filebeat_failed_ssh_attempts.png)
 
 We can see all the failed attempts hits were detected and sent to Kibana.
 
 Now Let's breakdown the syntax of our previous short script:
 
-`for` begins the for loop.
+`for` begins the `for` loop.
 
 `i in` creates a variable named `i` that will hold each number `in` our list.
 
@@ -421,7 +427,7 @@ Now Let's breakdown the syntax of our previous short script:
 
 `;` separates the portions of our `for` loop when written on one line.
 
-`do` indicates the action taken each loop.
+`do` indicates the action taken by each loop.
 
 `ssh sysadmin@10.0.0.5` is the command run by `do`.
 
@@ -429,7 +435,7 @@ Now Let's breakdown the syntax of our previous short script:
 
 `done` closes the `for` loop.
 
-Now we can run the same short script with a few modifications, to test that `filebeat` is logging all failed attempts on all web servers where `filebeat` was deployed.
+Now we can run the same short script command with a few modifications, to test that `filebeat` is logging all failed attempts on all web servers where `filebeat` was deployed.
 
 We want to run a command that will attempt to SSH into multiple web servers at the same time and continue forever until we stop it:
 
@@ -440,25 +446,26 @@ while true; do for i in {5..7}; do ssh Web_1@10.0.0.$i; done
 Now let's breakdown the syntax of our previous short script:
 
 
-`while` begins the while loop.
+`while` begins the `while` loop.
 
 `true` will always be equal to `true` so this loop will never stop, unless you force quit it.
 
 `;` separates the portions of our `while` loop when it's written on one line.
 
-`do` indicates the action taken each loop.
+`do` indicates the action taken by each loop.
 
-`i in` creates a variable named i that will hold each number in our list.
+`i in` creates a variable named `i` that will hold each number in our list.
 
 `{5..7}` creates a list of numbers (5, 6 and 7), each of which will be given to our `i` variable.
 
-`do` indicates the action taken each loop.
-
 `ssh sysadmin@10.0.0.$i` is the command run by `do`. It is passing in the `$i` variable so the `wget` command will be run on each server, i.e., 10.0.0.5, 10.0.0.6, 10.0.0.7 (Web-1, Web-2, Web-3).
+
 
 Next, we want to confirm that `metricbeat` is functioning. To do so we will run a linux stress test.
 
+
 * Generating a high amount of CPU usage on the our web servers (Web-1, Web-2 and Web-3) and confirm that Kibana is collecting the data.
+
 
 1. From our Jump Box, we start our Ansible container with the follow command:
 
@@ -496,7 +503,7 @@ Another view of the CPU usage metrics Kibana collected:
 
 * Generate a high amount of web requests to our pen-testing servers and make sure that Kibana is picking them up.
 
-This time we want to generate a high amount of web requests directed to one of our web server, we will use `wget` to launch a DoS.
+This time we want to generate a high amount of web requests directed to one of our web server, we will use `wget` to launch a DoS attack.
 
 1. We log into our Jump Box
 
