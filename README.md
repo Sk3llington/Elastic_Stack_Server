@@ -454,7 +454,35 @@ Now let's breakdown the syntax of our previous short script:
 
 `do` indicates the action taken each loop.
 
-`ssh sysadmin@10.0.0.$i` is the command run by do. It is passing in the `$i` variable so the `wget` command will be run on each server, i.e, 10.0.0.5, 10.0.0.6, 10.0.0.7 (Web-1, Web-2, Web-3).
+`ssh sysadmin@10.0.0.$i` is the command run by `do`. It is passing in the `$i` variable so the `wget` command will be run on each server, i.e., 10.0.0.5, 10.0.0.6, 10.0.0.7 (Web-1, Web-2, Web-3).
+
+Next, we want to confirm that `metricbeat` is functioning. To do so we will run a linux stress test.
+
+* Generating a high amount of CPU usage on the our web servers (Web-1, Web-2 and Web-3) and confirm that Kibana is collecting the data.
+
+1. From our Jump Box, we start our Ansible container with the follow command:
+
+```bash
+sudo docker start hopeful_lalande && sudo docker attach hopeful_lalande
+```
+
+2. We SSH from our Ansible container to one of our Web VM.
+
+```bash
+ssh Web_1@10.0.0.5
+```
+
+3. We install the `stress` module with the following command:
+
+```bash
+sudo apt install stress
+```
+
+4. We run the service with the following command and let the stress test run for a few minutes:
+
+```bash
+sudo stress --cpu 1
+```
 
 
 
