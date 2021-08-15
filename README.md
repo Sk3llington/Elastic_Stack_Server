@@ -64,7 +64,7 @@ Rather than configure ELK manually, we opted to develop a reusable Ansible Playb
 
 To use this playbook, one must log into the Jump Box, then issue the command: 
 
-```
+```bash
 ansible-playbook install_elk.yml
 ```
 
@@ -297,7 +297,7 @@ First, we SSH into the control node and follow the steps below:
 
 First we connect to our Jump Box using the following command to SSH into the box:
 
-```
+```bash
 ssh azadmin@51.141.166.114
 ```
 
@@ -306,7 +306,7 @@ ssh azadmin@51.141.166.114
 
 Then we run the following command to start and launch our Ansible docker container (i.e., our Ansible Control Node):
 
-```
+```bash
 sudo docker start hopeful_lalande && sudo docker attach hopeful_lalande 
 ```
 
@@ -316,7 +316,7 @@ Note: Your container will have a different name.
 
 We then copy the playbooks into the correct location. The easiest way to do that is to use Git and run the following commands in your terminal:
 
-```
+```bash
 cd /etc/ansible
 
 mkdir files
@@ -336,7 +336,7 @@ Now that all the files we need are copied into the correct location, we can upda
 
 We need to edit the "hosts" file located in /etc/ansible using the following commands:
 
-```
+```bash
 nano hosts
 ```
 
@@ -349,23 +349,23 @@ Next, we run the playbooks.
 
 First we run our ELK playbook to deploy our ELK server:
 
-```
+```bash
 ansible-playbook install_elk.yml
 ```
 
 Then we run the Filebeat and Metricbeat playbooks to to install the agents on our web servers (Web-1, Web-2, Web-3):
 
-```
+```bash
 ansible-playbook install_filebeat.yml
 ```
-```
+```bash
 ansible-playbook install_metricbeat.yml
 ```
 
 
 To verify that our ELK server was successfully deployed, we SSH into our ELK server and run the following command:
 
-```
+```bash
 curl http://localhost:5601/app/kibana
 ```
 
@@ -398,7 +398,7 @@ To do so, we have implemented 3 tasks:
 To generate these attempts we intentionally tried to connect to our Web-1 web server from the Jump Box instead of connecting from our Ansible container in order to generate failed attempts.
 To do so we used the following short script to automate 1000 failed SSH login attempts:
 
-```
+```bash
 for i in {1..1000}; do ssh Web_1@10.0.0.5; done
 ```
 
@@ -433,7 +433,7 @@ Now we can run the same short script with a few modifications, to test that `fil
 
 We want to run a command that will attempt to SSH into multiple web servers at the same time and continue forever until we stop it:
 
-```
+```bash
 while true; do for i in {5..7}; do ssh Web_1@10.0.0.$i; done
 ```
 
