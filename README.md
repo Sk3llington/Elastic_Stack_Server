@@ -390,10 +390,10 @@ To do so, we have implemented 3 tasks:
 1. Generate a high amount of failed SSH login attempts and verify that Kibana is picking up this activity.
 
 
-2. Generate a high amount of CPU usage on the pen-testing machines and verify that Kibana picks up this data.
+2. Generate a high amount of CPU usage on our web servers and verify that Kibana picks up this data.
 
 
-3. Generate a high amount of web requests to our pen-testing servers and make sure that Kibana is picking them up.
+3. Generate a high amount of web requests to our web servers and make sure that Kibana is picking them up.
 
 
 * Generating a hight amount of failed SSH login attempts:
@@ -501,7 +501,7 @@ Another view of the CPU usage metrics Kibana collected:
 ![cpu stress test results graph](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/cpu_stress_test_result_graph.png)
 
 
-* Generate a high amount of web requests to our pen-testing servers and make sure that Kibana is picking them up.
+* Generate a high amount of web requests to our web servers and make sure that Kibana is picking them up.
 
 This time we want to generate a high amount of web requests directed to one of our web server, we will use `wget` to launch a DoS attack.
 
