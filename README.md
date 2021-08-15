@@ -393,16 +393,68 @@ To do so, we have implemented 3 tasks:
 3. Generate a high amount of web requests to your pen-testing servers and make sure that Kibana is picking them up.
 
 
+..*Generating a hight amount of failed SSH login attempts:
+
+To generate these attempts we intentionally tried to connect to our Web-1 web server from the Jump Box instead of connecting from our Ansible container in order to generate failed attempts.
+To do so we used the following short script to automate 1000 failed SSH login attempts:
+
+```
+for i in {1..1000}; do ssh Web_1@10.0.0.5; done
+```
+
+![ssh failed attempts](
 
 
+Next we check Kibana to see if the failed attempts were logged:
+
+![filebeat failed ssh attempts](
+
+We can see all the failed attempts hits were detected and sent to Kibana.
+
+Now Let's breakdown the syntax of our previous short script:
+
+`for` begins the for loop.
+
+`i in` creates a variable named `i` that will hold each number `in` our list.
+
+`{1..1000}` creates a list of 1000 numbers, each of which will be given to our `i` variable.
+
+`;` separates the portions of our `for` loop when written on one line.
+
+`do` indicates the action taken each loop.
+
+`ssh sysadmin@10.0.0.5` is the command run by `do`.
+
+`;` separates the portions of our for loop when it's written on one line.
+
+`done` closes the `for` loop.
+
+Now we can run the same short script with a few modifications, to test that `filebeat` is logging all failed attempts on all web servers where `filebeat` was deployed.
+
+We want to run a command that will attempt to SSH into multiple web servers at the same time and continue forever until we stop it:
+
+```
+while true; do for i in {5..7}; do ssh Web_1@10.0.0.$i; done
+```
+
+Now let's breakdown the syntax of our previous short script:
 
 
+`while` begins the while loop.
 
+`true` will always be equal to `true` so this loop will never stop, unless you force quit it.
 
+`;` separates the portions of our `while` loop when it's written on one line.
 
+`do` indicates the action taken each loop.
 
+`i in` creates a variable named i that will hold each number in our list.
 
+`{5..7}` creates a list of numbers (5, 6 and 7), each of which will be given to our `i` variable.
 
+`do` indicates the action taken each loop.
+
+`ssh sysadmin@10.0.0.$i` is the command run by do. It is passing in the `$i` variable so the `wget` command will be run on each server, i.e, 10.0.0.5, 10.0.0.6, 10.0.0.7 (Web-1, Web-2, Web-3).
 
 
 
