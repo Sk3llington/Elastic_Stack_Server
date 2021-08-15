@@ -500,7 +500,12 @@ This time we want to generate a high amount of web requests directed to one of o
 
 1. We log into our Jump Box
 
-2. We run the following command to download the file `index.html` from our Web-1 VM:
+2. We need to add a new firewall rule to allow our Jump Box (10.0.0.4) to connect to our web servers over HTTP on port 80. To do so, we add a new Inbound Security Rule to our RedTeam1 Network Security Group:
+
+![jump to http to webservers](
+
+
+3. We run the following command to download the file `index.html` from our Web-1 VM:
 
 ```bash
 wget 10.0.0.5
@@ -511,9 +516,37 @@ Output of the command:
 ![index html download](
 
 
-3. We confirm that the file has been downloaded with the `ls` command:
+4. We confirm that the file has been downloaded with the `ls` command:
 
-> azadmin@Jump-Box-Provisioner:~$ ls
-index.html
+> azadmin@Jump-Box-Provisioner:~$ ls 
+> index.html
 
-4. We run the `wget` command in a loop to generate a very high number of web requests.
+5. Next, we run the `wget` command in a loop to generate a very high number of web requests, we will use the `while` loop:
+
+```bash
+while true; do wget 10.0.0.5; done
+```
+
+The result is that the `Load` and `Network Traffic` were hit as seen below:
+
+![load increase DoS](
+
+![memory usage](
+
+![network traffic increase](
+
+After stopping the `wget` command, we can see that thousands of index.html files were created (as seen below).
+
+
+![index html files](
+
+
+ We can use the following command to clean that up:
+
+```bash
+rm *
+```
+
+ 
+
+
