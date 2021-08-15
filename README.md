@@ -550,6 +550,29 @@ After stopping the `wget` command, we can see that thousands of index.html files
 rm *
 ```
 
+We can also avoid the creation of the index.html file by adding the flag `-O` to our command so that we can specify a destination file where all the `index.html` will be concatenated and written to.
+
+Since we don't want to save the `index.html` files, we will not write them to any output file but instead send them directly to a directory that doesn't save anything: `/dev/null`. 
+
+We use the following command to do that:
+
+
+```bash
+while true; do wget 10.0.0.5 -O /dev/null; done
+```
+
+Now, if we want to perform the `wget` DoS request to all our web servers, we can use the previous command we used to generate failed SSH login attempts to all our web servers, but this time we will tweak the command to send `wget` requests to all 3 web servers:
+
+```bash
+while true; do for i in {5..7}; do wget -O /dev/null 10.0.0.$i; done
+```
+
+Note that we need to press CTRL + C to stop the `wget` requests since we are using the `while` loop.
+
+
+
+
+
  
 
 
