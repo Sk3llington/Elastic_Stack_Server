@@ -390,7 +390,7 @@ To do so, we have implemented 3 tasks:
 
 2. Generate a high amount of CPU usage on the pen-testing machines and verify that Kibana picks up this data.
 
-3. Generate a high amount of web requests to your pen-testing servers and make sure that Kibana is picking them up.
+3. Generate a high amount of web requests to our pen-testing servers and make sure that Kibana is picking them up.
 
 
 * Generating a hight amount of failed SSH login attempts:
@@ -494,3 +494,18 @@ Another view of the CPU usage metrics Kibana collected:
 ![cpu stress test results graph](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/7393789af6e4858bb3db389ed5271e2b712c6579/Images/cpu_stress_test_result_graph.png)
 
 
+* Generate a high amount of web requests to our pen-testing servers and make sure that Kibana is picking them up.
+
+This time we want to generate a high amount of web requests directed to one of our web server, we will use `wget` to launch a DoS.
+
+1. We log into our Jump Box
+
+2. We run the following command to download the file `index.html` from our Web-1 VM:
+
+```bash
+wget 10.0.0.5
+```
+
+3. We confirm that the file has been downloaded:
+
+> 
