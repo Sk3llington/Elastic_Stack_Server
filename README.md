@@ -486,4 +486,11 @@ sudo stress --cpu 1
 
 Next, we compare 2 of our Web servers to see the difference in CPU usage, confirming that `metricbeat` is capturing the increase in CPU usage due to our stress command:
 
-![cpu stress test results]
+![cpu stress test results](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/7393789af6e4858bb3db389ed5271e2b712c6579/Images/cpu_stress_test_result.png)
+
+
+Another view of the CPU usage metrics Kibana collected:
+
+![cpu stress test results graph](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/7393789af6e4858bb3db389ed5271e2b712c6579/Images/cpu_stress_test_result_graph.png)
+
+
