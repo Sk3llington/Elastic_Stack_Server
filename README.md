@@ -484,5 +484,6 @@ sudo apt install stress
 sudo stress --cpu 1
 ```
 
+Next, we compare 2 of our Web servers to see the difference in CPU usage, confirming that `metricbeat` is capturing the increase in CPU usage due to our stress command:
 
-
+![cpu stress test results]
