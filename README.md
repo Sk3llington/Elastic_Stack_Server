@@ -402,12 +402,12 @@ To do so we used the following short script to automate 1000 failed SSH login at
 for i in {1..1000}; do ssh Web_1@10.0.0.5; done
 ```
 
-![ssh failed attempts](
+![ssh failed attempts](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/f927b7cdbd50c0d4b7830f1839658fcfeaf2a96d/Images/ssh_failed_attempts.png)
 
 
 Next we check Kibana to see if the failed attempts were logged:
 
-![filebeat failed ssh attempts](
+![filebeat failed ssh attempts](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/f927b7cdbd50c0d4b7830f1839658fcfeaf2a96d/Images/filebeat_failed_ssh_attempts.png)
 
 We can see all the failed attempts hits were detected and sent to Kibana.
 
