@@ -1,6 +1,6 @@
 # Project-1-UCLA-Cyber-Security
 
-Deployment of a DVWA web application and a monitoring ELK server via Microsoft Azure Cloud.
+Deployment of an ELK Stack server to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 ## Automated ELK Stack Deployment
 
@@ -75,6 +75,8 @@ This runs the install_elk.yml playbook on the elk host.
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the Jump Box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP address: 91.219.212.205
+
+*Note that if you have a dynamic IP address or if you are using a VPN, your IP address will change in the future and you will have to update your Network Security Group settings to allow access from your new IP address. The same update will apply for all rules that allow for a connection over a public IP address from your workstation only.*
 
 Machines within the network can only be accessed by each other, i.e., the Web-1, Web-2, Web-3 web servers send traffic to the ELK Server (see diagram). 
 
@@ -325,9 +327,9 @@ git clone https://github.com/yourusername/projectname.git
 
 # Move Playbooks and hosts file Into `/etc/ansible`
 
-cp project-1/playbooks/* .
+cp projectname/playbooks/* .
 
-cp project-1/files/* ./files
+cp projectname/files/* ./files
 ```
 
 Now that all the files we need are copied into the correct location, we can update the list of web servers to run the playbooks on:
@@ -368,7 +370,7 @@ curl http://localhost:5601/app/kibana
 ```
 
 
-If the server was successfully installed and deployed we should see the following HTLM code output in the terminal:
+If the server was successfully installed and deployed we should see the following HTML code output in the terminal:
 
 ![confirm elk server running via localhost](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/confirm_ELK_server_running_localhost.png)
 
@@ -380,31 +382,25 @@ If the server is up and functioning, we should access the page below:
 
 ![confirm elk running via public ip](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/confirm_ELK_server_running_public_ip.png)
 
-Next, we want to verify that `filebeat` and `metricbeat` are actually collecting the data they are supposed to.
+Next, we want to verify that `filebeat` and `metricbeat` are actually collecting the data they are supposed to and that our deployment is fully functioning.
 
-Below, we can see that `filebeat` is up and running and collecting system logs:
+To do so, we have implemented 3 tasks:
 
-![filebeat is running](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/84ccf0c5c0b2575a8be4ddd6a0295a6e626319ec/Images/filebeat_running.png)
-
-
-Next, we want to confirm that failed ssh login and successful ones are correctly logged.
-
-We can directly access `system.auth.ssh.event` on the left side of our page to specifically fetch the number of successful and failed ssh login attempts. I have intentionally logged into the Web-1 server once and intentionally failed to connect to it via ssh using the wrong username to see if both attempts are correctly logged, we can see below that they are:
-
-![filebeat ssh event logs 2](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/84ccf0c5c0b2575a8be4ddd6a0295a6e626319ec/Images/filebeat_ssh_event_logs_2.png)
+... 1. Generate a high amount of failed SSH login attempts and verify that Kibana is picking up this activity.
+... 2. Generate a high amount of CPU usage on the pen-testing machines and verify that Kibana picks up this data.
+... 3. Generate a high amount of web requests to your pen-testing servers and make sure that Kibana is picking them up.
 
 
-At this point we have 1 successful ssh login and a failed one. Since I like to be 100% sure that it is indeed working, I intentionally failed to authenticate and access the webserver via ssh 3 more times:
 
-![logout and denied ssh auth](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/84ccf0c5c0b2575a8be4ddd6a0295a6e626319ec/Images/logout_and_denied_ssh_auth.png)
 
-We check again to make sure that these failed attempts were caught:
 
-![file beat ssh event 3](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/84ccf0c5c0b2575a8be4ddd6a0295a6e626319ec/Images/filebeat_ssh_event_logs_3.png)
 
-Now, we want to make sure that `metricbeat` is running. All we have to do is to switch to our `metricbeat` filter and make sure that the beat is actively monitoring the state of our webservers and is correctly fetching data:
 
-![metricbeat running](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/84ccf0c5c0b2575a8be4ddd6a0295a6e626319ec/Images/metricbeat_running.png)
 
-We have now confirmed that our ELK Stack server is successfully deployed and ready to collect the data we need to monitor our webservers, watching for any sign of malicious activity!
+
+
+
+
+
+
 
