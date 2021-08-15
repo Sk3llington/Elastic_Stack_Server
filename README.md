@@ -506,6 +506,14 @@ This time we want to generate a high amount of web requests directed to one of o
 wget 10.0.0.5
 ```
 
-3. We confirm that the file has been downloaded:
+Output of the command:
 
-> 
+![index html download](
+
+
+3. We confirm that the file has been downloaded with the `ls` command:
+
+> azadmin@Jump-Box-Provisioner:~$ ls
+index.html
+
+4. We run the `wget` command in a loop to generate a very high number of web requests.
