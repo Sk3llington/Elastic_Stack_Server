@@ -537,7 +537,7 @@ index.html
 while true; do wget 10.0.0.5; done
 ```
 
-The result is that the `Load` and `Network Traffic` were hit as seen below:
+The result is that the `Load`, `Memory Usage` and `Network Traffic` were hit as seen below:
 
 ![load increase DoS](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/load_increase_DoS.png)
 
