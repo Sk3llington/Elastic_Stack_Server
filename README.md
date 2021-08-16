@@ -396,7 +396,7 @@ To do so, we have implemented 3 tasks:
 3. Generate a high amount of web requests to our web servers and make sure that Kibana is picking them up.
 
 
-* Generating a hight amount of failed SSH login attempts:
+* Generating a high amount of failed SSH login attempts:
 
 
 To generate these attempts we intentionally tried to connect to our Web-1 web server from the Jump Box instead of connecting from our Ansible container in order to generate failed attempts.
@@ -415,7 +415,7 @@ Next we check Kibana to see if the failed attempts were logged:
 
 ![filebeat failed ssh attempts](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/f927b7cdbd50c0d4b7830f1839658fcfeaf2a96d/Images/filebeat_failed_ssh_attempts.png)
 
-We can see all the failed attempts hits were detected and sent to Kibana.
+We can see all the failed attempts were detected and sent to Kibana.
 
 Now Let's breakdown the syntax of our previous short script:
 
@@ -464,7 +464,7 @@ Now let's breakdown the syntax of our previous short script:
 Next, we want to confirm that `metricbeat` is functioning. To do so we will run a linux stress test.
 
 
-* Generating a high amount of CPU usage on the our web servers (Web-1, Web-2 and Web-3) and confirm that Kibana is collecting the data.
+* Generating a high amount of CPU usage on our web servers (Web-1, Web-2 and Web-3) and confirming that Kibana is collecting the data.
 
 
 1. From our Jump Box, we start our Ansible container with the follow command:
@@ -503,7 +503,7 @@ Another view of the CPU usage metrics Kibana collected:
 
 * Generate a high amount of web requests to our web servers and make sure that Kibana is picking them up.
 
-This time we want to generate a high amount of web requests directed to one of our web server, we will use `wget` to launch a DoS attack.
+This time we want to generate a high amount of web requests directed to one of our web servers, we will use `wget` to launch a DoS attack.
 
 1. We log into our Jump Box
 
@@ -583,7 +583,7 @@ while true; do for i in {5..7}; do wget -O /dev/null 10.0.0.$i; done
 Note that we need to press CTRL + C to stop the `wget` requests since we are using the `while` loop.
 
 
-
+Our ELK server is now functioning and correctly monitoring our load-balanced exposed DVWA web application.
 
 
  
