@@ -32,7 +32,7 @@ Why a Jump Box?
 
   - A Jump Box or a "Jump Server" is a gateway on a network used to access and manage devices in different security zones. A Jump Box acts as a security layer between networks and/or security zones and provides a controlled way to access them.
 
-Via the Jump Box, we make sure that access controls are in place to ensure that only authorized users (in this case, ourselves), will be able to connect to the network.
+Via the Jump Box, I make sure that access controls are in place to ensure that only authorized users (in this case, ourselves), will be able to connect to the network.
 
 
 Integrating an Elastic Stack server allows users to easily monitor the vulnerable VMs for changes to their file systems and system metrics such as privilege escalation failures, SSH logins activity, CPU and memory usage, etc.
@@ -60,7 +60,7 @@ In addition to the above, Azure has provisioned a load balancer in front of all 
 
 The ELK Virtual Machine exposes an Elastic Stack instance. Docker is used to download and manage an ELK container.
 
-Rather than configure Elastic Stack server manually, we opted to develop a reusable Ansible Playbook to accomplish the task. This playbook is duplicated below.
+Rather than configure Elastic Stack server manually, I opted to develop a reusable Ansible Playbook to accomplish the task. This playbook is duplicated below.
 
 To use this playbook, one must log into the Jump Box, then issue the command: 
 
@@ -105,16 +105,16 @@ The playbook implements the following tasks:
   tasks:
 ```
 
-- In the above play, representing the header of the YAML file, we defined the title of our playbook based on the playbook's main goal by setting the keyword 'name:' to: "Configure Elk VM with Docker". 
+- In the above play, representing the header of the YAML file, I defined the title of my playbook based on the playbook's main goal by setting the keyword 'name:' to: "Configure Elk VM with Docker". 
 
-Next we defined the managed nodes to target, in this case we set the keyword 'hosts:' to "elk", making sure that the playbook is run only on the machines in the "elk" group. 
+Next I defined the managed nodes to target, in this case I set the keyword 'hosts:' to "elk", making sure that the playbook is run only on the machines in the "elk" group. 
 To edit groups and add/remove machines from a group, the following inventory file located in /etc/ansible is used (see image below).
 
 ![hosts file editing](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/hosts_file_web_servers_edit.png) 
 
-Next we defined the user account for the SSH connection, i.e., Web_1, by setting the keyword 'remote_user:' to "Web_1".
+Next I defined the user account for the SSH connection, i.e., Web_1, by setting the keyword 'remote_user:' to "Web_1".
 
-Next we activated privilege escalation by setting the keyword 'become:' to "true". 
+Next I activated privilege escalation by setting the keyword 'become:' to "true". 
 
 Following the keyword 'tasks:', the second play is defined below.
 
@@ -203,16 +203,16 @@ This ELK server is configured to monitor the following machines:
 - Web-2 (DVWA 2) | 10.0.0.6
 - Web-3 (DVWA 3) | 10.0.0.7
 
-We have installed the following Beats on these machines:
+I have installed the following Beats on these machines:
 
 - Filebeat
 - Metricbeat
 
 These Beats allow us to collect the following information from each machine:
 
-`Filebeat`: Filebeat detects changes to the filesystem. We use it to collect system logs and more specifically, we use it to detect SSH login attempts and failed sudo escalations.
+`Filebeat`: Filebeat detects changes to the filesystem. I use it to collect system logs and more specifically, I use it to detect SSH login attempts and failed sudo escalations.
 
-Filebeat playbook we used below:
+Filebeat playbook I used below:
 
 ```yaml
 ---
@@ -250,7 +250,7 @@ Filebeat playbook we used below:
 
 `Metricbeat`: Metricbeat detects changes in system metrics, such as CPU usage and memory usage.
 
-Metricbeat playbook we used below:
+Metricbeat playbook I used below:
 
 ```yaml
 ---
@@ -287,15 +287,15 @@ Metricbeat playbook we used below:
 
 ### Using the Playbooks
 
-In order to use the playbooks, you will need to have an Ansible control node already configured (we use our Jump Box as the Ansible control node), copy the playbooks to the Ansible control node and run the playbooks on the appropriate targets. 
+In order to use the playbooks, you will need to have an Ansible control node already configured (I use my Jump Box as the Ansible control node), copy the playbooks to the Ansible control node and run the playbooks on the appropriate targets. 
 
-First, we SSH into the control node and follow the steps below:
+First, I SSH into the control node and follow the steps below:
 
 - Copy the playbook files to the Ansible control node.
 - Update the "hosts" file to include the groups of hosts representing the targeted servers to run the playbooks on.
 - Run the playbooks, and navigate to the ELK server to check that the installation worked as expected.
 
-First we connect to our Jump Box using the following command to SSH into the box:
+So first I connect to my Jump Box using the following command to SSH into the box:
 
 ```bash
 ssh azadmin@51.141.166.114
@@ -304,7 +304,7 @@ ssh azadmin@51.141.166.114
 
 ![SSH into ump box](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/SSH_into_Jump_Box.png)
 
-Then we run the following command to start and launch our Ansible docker container (i.e., our Ansible Control Node):
+Then I run the following command to start and launch my Ansible docker container (i.e., the Ansible Control Node):
 
 ```bash
 sudo docker start hopeful_lalande && sudo docker attach hopeful_lalande 
@@ -314,7 +314,7 @@ Note: Your container will have a different name.
 
 ![Start and launch ansible container](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/start_launch_ansible_container.png)
 
-We then copy the playbooks into the correct location. The easiest way to do that is to use Git and run the following commands in your terminal:
+Then, I copy the playbooks into the correct location. The easiest way to do that is to use Git and run the following commands in your terminal:
 
 ```bash
 cd /etc/ansible
@@ -332,28 +332,28 @@ cp projectname/playbooks/* .
 cp projectname/files/* ./files
 ```
 
-Now that all the files we need are copied into the correct location, we can update the list of web servers to run the playbooks on:
+Now that all the files I need are copied into the correct location, I can update the list of web servers to run the playbooks on:
 
-We need to edit the "hosts" file located in /etc/ansible using the following commands:
+I need to edit the "hosts" file located in /etc/ansible using the following commands:
 
 ```bash
 nano hosts
 ```
 
 
-Then we will update the file with the IP of web servers we want to install Filebeat & Metricbeat & ELK on. To create a group we need to use brackets "[]", give the group of server a name (i.e., "webservers" & "elk") followed by the private IP addresses of the servers.
+Then I will update the file with the IP of the web servers we want to install Filebeat & Metricbeat & ELK on. To create a group I need to use brackets "[]", give the group of server a name (i.e., "webservers" & "elk") followed by the IP addresses of the servers.
 
 ![hosts file web server edit](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/hosts_file_web_servers_edit.png)
 
-Next, we run the playbooks.
+Next, I run the playbooks.
 
-First we run our ELK playbook to deploy our ELK server:
+First I run my ELK playbook to deploy my ELK server:
 
 ```bash
 ansible-playbook install_elk.yml
 ```
 
-Then we run the Filebeat and Metricbeat playbooks to to install the agents on our web servers (Web-1, Web-2, Web-3):
+Then I run the Filebeat and Metricbeat playbooks to install the agents on my web servers (Web-1, Web-2, Web-3):
 
 ```bash
 ansible-playbook install_filebeat.yml
@@ -363,44 +363,45 @@ ansible-playbook install_metricbeat.yml
 ```
 
 
-To verify that our ELK server was successfully deployed, we SSH into our ELK server and run the following command:
+To verify that my ELK server was successfully deployed, I SSH into my ELK server and run the following command:
 
 ```bash
 curl http://localhost:5601/app/kibana
 ```
 
 
-If the server was successfully installed and deployed we should see the following HTML code output in the terminal:
+If the server was successfully installed and deployed I should see the following HTML code output in the terminal:
 
 ![confirm elk server running via localhost](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/confirm_ELK_server_running_localhost.png)
 
-We can also use our web browser to confirm that the ELK server is up and running by opening a web browser page and entering the public ip address to access Kibana's web interface:
+You can also use your web browser to confirm that the ELK server is up and running by opening a web browser page and entering the public ip address to access Kibana's web interface:
 
 http://40.79.255.121:5601/app/kibana
 
-If the server is up and functioning, we should access the page below:
+If the server is up and functioning, you should be able to access the page below:
 
 ![confirm elk running via public ip](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/confirm_ELK_server_running_public_ip.png)
 
-Next, we want to verify that `filebeat` and `metricbeat` are actually collecting the data they are supposed to and that our deployment is fully functioning.
+Next, I want to verify that `filebeat` and `metricbeat` are actually collecting the data they are supposed to and that my deployment is fully functioning.
 
-To do so, we have implemented 3 tasks:
+To do so, I have implemented 3 tasks:
 
 
 1. Generate a high amount of failed SSH login attempts and verify that Kibana is picking up this activity.
 
 
-2. Generate a high amount of CPU usage on our web servers and verify that Kibana picks up this data.
+2. Generate a high amount of CPU usage on my web servers and verify that Kibana picks up this data.
 
 
-3. Generate a high amount of web requests to our web servers and make sure that Kibana is picking them up.
+3. Generate a high amount of web requests to my web servers and make sure that Kibana is picking them up.
 
 
 * Generating a high amount of failed SSH login attempts:
 
 
-To generate these attempts we intentionally tried to connect to our Web-1 web server from the Jump Box instead of connecting from our Ansible container in order to generate failed attempts.
-To do so we used the following short script to automate 1000 failed SSH login attempts:
+To generate these attempts I intentionally tried to connect to my Web-1 web server from the Jump Box instead of connecting from my Ansible container in order to generate failed attempts (the server can't verify my private key outside of the container).
+
+To do so I used the following short script to automate 1000 failed SSH login attempts:
 
 
 ```bash
@@ -410,14 +411,14 @@ for i in {1..1000}; do ssh Web_1@10.0.0.5; done
 ![ssh failed attempts](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/f927b7cdbd50c0d4b7830f1839658fcfeaf2a96d/Images/ssh_failed_attempts.png)
 
 
-Next we check Kibana to see if the failed attempts were logged:
+Next I check Kibana to see if the failed attempts were logged:
 
 
 ![filebeat failed ssh attempts](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/f927b7cdbd50c0d4b7830f1839658fcfeaf2a96d/Images/filebeat_failed_ssh_attempts.png)
 
-We can see all the failed attempts were detected and sent to Kibana.
+I can see that all the failed attempts were detected and sent to Kibana.
 
-Now Let's breakdown the syntax of our previous short script:
+Now Let's breakdown the syntax of my previous short script:
 
 `for` begins the `for` loop.
 
@@ -435,15 +436,15 @@ Now Let's breakdown the syntax of our previous short script:
 
 `done` closes the `for` loop.
 
-Now we can run the same short script command with a few modifications, to test that `filebeat` is logging all failed attempts on all web servers where `filebeat` was deployed.
+Now I can run the same short script command with a few modifications, to test that `filebeat` is logging all failed attempts on all web servers where `filebeat` was deployed.
 
-We want to run a command that will attempt to SSH into multiple web servers at the same time and continue forever until we stop it:
+I want to run a command that will attempt to SSH into multiple web servers at the same time and continue forever until I stop it:
 
 ```bash
 while true; do for i in {5..7}; do ssh Web_1@10.0.0.$i; done
 ```
 
-Now let's breakdown the syntax of our previous short script:
+Now let's breakdown the syntax of my previous short script:
 
 
 `while` begins the `while` loop.
@@ -461,37 +462,37 @@ Now let's breakdown the syntax of our previous short script:
 `ssh sysadmin@10.0.0.$i` is the command run by `do`. It is passing in the `$i` variable so the `wget` command will be run on each server, i.e., 10.0.0.5, 10.0.0.6, 10.0.0.7 (Web-1, Web-2, Web-3).
 
 
-Next, we want to confirm that `metricbeat` is functioning. To do so we will run a linux stress test.
+Next, I want to confirm that `metricbeat` is functioning. To do so I will run a linux stress test.
 
 
-* Generating a high amount of CPU usage on our web servers (Web-1, Web-2 and Web-3) and confirming that Kibana is collecting the data.
+* Generating a high amount of CPU usage on my web servers (Web-1, Web-2 and Web-3) and confirming that Kibana is collecting the data.
 
 
-1. From our Jump Box, we start our Ansible container with the follow command:
+1. From my Jump Box, I start my Ansible container with the following command:
 
 ```bash
 sudo docker start hopeful_lalande && sudo docker attach hopeful_lalande
 ```
 
-2. We SSH from our Ansible container to one of our Web VM.
+2. I SSH from my Ansible container to one of my web server.
 
 ```bash
 ssh Web_1@10.0.0.5
 ```
 
-3. We install the `stress` module with the following command:
+3. I install the `stress` module with the following command:
 
 ```bash
 sudo apt install stress
 ```
 
-4. We run the service with the following command and let the stress test run for a few minutes:
+4. I run the service with the following command and let the stress test run for a few minutes:
 
 ```bash
 sudo stress --cpu 1
 ```
 
-Next, we compare 2 of our Web servers to see the difference in CPU usage, confirming that `metricbeat` is capturing the increase in CPU usage due to our stress command:
+Next, I compare 2 of my web servers to see the difference in CPU usage, confirming that `metricbeat` is capturing the increase in CPU usage due to our stress command:
 
 ![cpu stress test results](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/7393789af6e4858bb3db389ed5271e2b712c6579/Images/cpu_stress_test_result.png)
 
@@ -501,18 +502,18 @@ Another view of the CPU usage metrics Kibana collected:
 ![cpu stress test results graph](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/cpu_stress_test_result_graph.png)
 
 
-* Generate a high amount of web requests to our web servers and make sure that Kibana is picking them up.
+* Generate a high amount of web requests to my web servers and make sure that Kibana is picking them up.
 
-This time we want to generate a high amount of web requests directed to one of our web servers, we will use `wget` to launch a DoS attack.
+This time I want to generate a high amount of web requests directed to one of my web servers, I will use `wget` to launch a DoS attack.
 
-1. We log into our Jump Box
+1. I log into my Jump Box
 
-2. We need to add a new firewall rule to allow our Jump Box (10.0.0.4) to connect to our web servers over HTTP on port 80. To do so, we add a new Inbound Security Rule to our RedTeam1 Network Security Group:
+2. I need to add a new firewall rule to allow my Jump Box (10.0.0.4) to connect to my web servers over HTTP on port 80. To do so, I add a new Inbound Security Rule to my RedTeam1 Network Security Group:
 
 ![jump to http to webservers](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/jumpbox_http_to_webservers.png)
 
 
-3. We run the following command to download the file `index.html` from our Web-1 VM:
+3. I run the following command to download the file `index.html` from my Web-1 VM:
 
 ```bash
 wget 10.0.0.5
@@ -523,7 +524,7 @@ Output of the command:
 ![index html download](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/index_html_download.png)
 
 
-4. We confirm that the file has been downloaded with the `ls` command:
+4. I confirm that the file has been downloaded with the `ls` command:
 
 
 ```bash
@@ -531,7 +532,7 @@ azadmin@Jump-Box-Provisioner:~$ ls
 index.html
 ```
 
-5. Next, we run the `wget` command in a loop to generate a very high number of web requests, we will use the `while` loop:
+5. Next, I run the `wget` command in a loop to generate a very high number of web requests, I will use the `while` loop:
 
 ```bash
 while true; do wget 10.0.0.5; done
@@ -545,13 +546,13 @@ The result is that the `Load`, `Memory Usage` and `Network Traffic` were hit as 
 
 ![network traffic increase](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/network_traffic_increase.png)
 
-After stopping the `wget` command, we can see that thousands of index.html files were created (as seen below).
+After stopping the `wget` command, I can see that thousands of index.html files were created (as seen below).
 
 
 ![index html files](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/9bcdcb0cdda628a18aad96fd07d56585c2b7a0cc/Images/index_html_files.png)
 
 
- We can use the following command to clean that up:
+ I can use the following command to clean that up:
 
 ```bash
 rm *
@@ -563,27 +564,27 @@ Now if we use `ls` again, the directory is a lot cleaner:
 ![directory cleanup](https://github.com/Sk3llington/Project-1-UCLA-Cyber-Security/blob/b3cb4729f2d776119d25fea2dcb676c6a22197c1/Images/directory_cleanup.png)
 
 
-We can also avoid the creation of the `index.html` file by adding the flag `-O` to our command so that we can specify a destination file where all the `index.html` files will be concatenated and written to.
+I can also avoid the creation of the `index.html` file by adding the flag `-O` to my command so that I can specify a destination file where all the `index.html` files will be concatenated and written to.
 
-Since we don't want to save the `index.html` files, we will not write them to any output file but instead send them directly to a directory that doesn't save anything, i.e., `/dev/null`. 
+Since I don't want to save the `index.html` files, I will not write them to any output file but instead send them directly to a directory that doesn't save anything, i.e., `/dev/null`. 
 
-We use the following command to do that:
+I use the following command to do that:
 
 
 ```bash
 while true; do wget 10.0.0.5 -O /dev/null; done
 ```
 
-Now, if we want to perform the `wget` DoS request on all our web servers, we can use the previous command we used to generate failed SSH login attempts on all our web servers, but this time we will tweak the command to send `wget` requests to all 3 web servers:
+Now, if I want to perform the `wget` DoS request on all my web servers, I can use the previous command I used to generate failed SSH login attempts on all my web servers, but this time I will tweak the command to send `wget` requests to all 3 web servers:
 
 ```bash
 while true; do for i in {5..7}; do wget -O /dev/null 10.0.0.$i; done
 ```
 
-Note that we need to press CTRL + C to stop the `wget` requests since we are using the `while` loop.
+Note that I need to press CTRL + C to stop the `wget` requests since I am using the `while` loop.
 
 
-Our Elastic Stack server is now functioning and correctly monitoring our load-balanced exposed DVWA web application.
+My Elastic Stack server is now functioning and correctly monitoring my load-balanced exposed DVWA web application.
 
 
  
