@@ -1,13 +1,13 @@
-# Project-1-UCLA-Cyber-Security
+# Elastic Stack Server Deployment
 
-Deployment of an ELK Stack server to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
+Deployment of an Elastic Stack server to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-## Automated ELK Stack Deployment
+## Automated Elastic Stack Deployment
 
 This document contains the following details:
 - Description of the Topology
 - Access Policies
-- ELK Configuration
+- Elastic Stack Configuration
  - Beats in Use
  - Machines Being Monitored
 - How to Use the Ansible Build
@@ -16,7 +16,7 @@ This document contains the following details:
 
 The files in this repository were used to configure the network depicted below.
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the YAML files may be used to install only certain pieces of it, such as Filebeat and Metricbeat.
+These files have been tested and used to generate a live Elastic Stack server deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the YAML files may be used to install only certain pieces of it, such as Filebeat and Metricbeat.
 
 
 ![vNet Diagram](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Diagrams/Azure_RedTeam1_vNet_diagram.png)
@@ -35,7 +35,7 @@ Why a Jump Box?
 Via the Jump Box, we make sure that access controls are in place to ensure that only authorized users (in this case, ourselves), will be able to connect to the network.
 
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to their file systems and system metrics such as privilege escalation failures, SSH logins activity, CPU and memory usage, etc.
+Integrating an Elastic Stack server allows users to easily monitor the vulnerable VMs for changes to their file systems and system metrics such as privilege escalation failures, SSH logins activity, CPU and memory usage, etc.
 
 
 The configuration details of each machine may be found below.
@@ -58,9 +58,9 @@ In addition to the above, Azure has provisioned a load balancer in front of all 
 
 ## ELK Server Configuration
 
-The ELK VM exposes an Elastic Stack instance. Docker is used to download and manage an ELK container.
+The ELK Virtual Machine exposes an Elastic Stack instance. Docker is used to download and manage an ELK container.
 
-Rather than configure ELK manually, we opted to develop a reusable Ansible Playbook to accomplish the task. This playbook is duplicated below.
+Rather than configure Elastic Stack server manually, we opted to develop a reusable Ansible Playbook to accomplish the task. This playbook is duplicated below.
 
 To use this playbook, one must log into the Jump Box, then issue the command: 
 
@@ -178,7 +178,7 @@ In this play, the ansible sysctl module configures the target virtual machine (i
 ```
 
 In this play, the ansible docker_container module is used to download and launch our Elk container. The container is pulled from the docker hub repository. The keyword 'image:' is set with the value "sebp/elk:761", "sebp" is the creator of the container (i.e., Sebastien Pujadas). "elk" is the container and "761" is the version of the container. The keyword 'state:' is set to "started" to start the container upon creation. The keyword 'restart_policy:' is set to "always" and will ensure that the container restarts if you restart your web vm. Without it, you will have to restart your container when you restart the machine.
-The keyword 'published_ports:' is set with the 3 ports that are used by our ELK stack configuration, i.e., "5601" is the port used by Kibana, "9200" is the port used by Elasticsearch for requests by default and "5400" is the default port Logstash listens on for incoming Beats connections (we will go over the Beats we installed in the following section "Target Machines & Beats").
+The keyword 'published_ports:' is set with the 3 ports that are used by our Elastic stack configuration, i.e., "5601" is the port used by Kibana, "9200" is the port used by Elasticsearch for requests by default and "5400" is the default port Logstash listens on for incoming Beats connections (we will go over the Beats we installed in the following section "Target Machines & Beats").
 
 ```yaml
       # Use systemd module
@@ -191,7 +191,7 @@ The keyword 'published_ports:' is set with the 3 ports that are used by our ELK 
 In this play, the ansible systemd module is used to start docker on boot, setting the keyword 'enabled:' to "yes".
 
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
+The following screenshot displays the result of running `docker ps` after successfully configuring the Elastic Stack instance.
 
 ![Docker ps output](https://github.com/Sk3llington/Project1-UCLA-Cyber-Security/blob/main/Images/elk_docker_ps_output.png)
 
@@ -583,7 +583,7 @@ while true; do for i in {5..7}; do wget -O /dev/null 10.0.0.$i; done
 Note that we need to press CTRL + C to stop the `wget` requests since we are using the `while` loop.
 
 
-Our ELK server is now functioning and correctly monitoring our load-balanced exposed DVWA web application.
+Our Elastic Stack server is now functioning and correctly monitoring our load-balanced exposed DVWA web application.
 
 
  
